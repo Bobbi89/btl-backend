@@ -34,6 +34,71 @@ const inMemoryDB = {
 console.log('📝 Using in-memory database (PostgreSQL not installed)');
 console.log('💡 Install PostgreSQL for persistent storage\n');
 
+// 🧪 TEMP: Pre-populate with test data for demonstration
+const testData = [
+    {
+        contract_address: '0xb6a065b18103557C8Af2A2a24dCe44cBeb37E98b',
+        score: 75,
+        is_honeypot: false,
+        is_mintable: false,
+        owner_can_withdraw: false,
+        has_sbt: false,
+        block_number: 6543210,
+        deployer: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
+        scanned_at: new Date(Date.now() - 3600000).toISOString() // 1 hour ago
+    },
+    {
+        contract_address: '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984',
+        score: 92,
+        is_honeypot: false,
+        is_mintable: false,
+        owner_can_withdraw: false,
+        has_sbt: true,
+        token_id: 1,
+        block_number: 6543150,
+        deployer: '0x1a9C8182C09F50C8318d769245beA52c32BE35BC',
+        scanned_at: new Date(Date.now() - 7200000).toISOString() // 2 hours ago
+    },
+    {
+        contract_address: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+        score: 88,
+        is_honeypot: false,
+        is_mintable: false,
+        owner_can_withdraw: false,
+        has_sbt: true,
+        token_id: 2,
+        block_number: 6543100,
+        deployer: '0x9759A6Ac90977b93B58547b4A71c78317f391A28',
+        scanned_at: new Date(Date.now() - 10800000).toISOString() // 3 hours ago
+    },
+    {
+        contract_address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+        score: 45,
+        is_honeypot: true,
+        is_mintable: true,
+        owner_can_withdraw: true,
+        has_sbt: false,
+        block_number: 6542980,
+        deployer: '0x5f65f7b609678448494De4C87521CdF6cEf1e932',
+        scanned_at: new Date(Date.now() - 14400000).toISOString() // 4 hours ago
+    },
+    {
+        contract_address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+        score: 65,
+        is_honeypot: false,
+        is_mintable: true,
+        owner_can_withdraw: false,
+        has_sbt: false,
+        block_number: 6542850,
+        deployer: '0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72',
+        scanned_at: new Date(Date.now() - 18000000).toISOString() // 5 hours ago
+    }
+];
+
+testData.forEach(scan => inMemoryDB.addScan(scan));
+console.log(`📊 Pre-populated with ${testData.length} test scans for demonstration`);
+console.log('   (Remove this in production - lines 37-82)\n');
+
 // ============ Blockchain Setup ============
 
 const provider = new ethers.JsonRpcProvider(RPC_URL);
